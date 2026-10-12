@@ -1,0 +1,16 @@
+services:
+  api:
+    build: .
+    container_name: taskflow-api
+    ports:
+      - "8000:8000"
+    environment:
+      APP_NAME: "TaskFlow Pro API"
+      DATABASE_URL: "sqlite:////app/data/taskflow.db"
+      CORS_ORIGINS: '["http://localhost:3000","http://localhost:5173"]'
+    volumes:
+      - taskflow_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  taskflow_data:
